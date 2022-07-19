@@ -1,0 +1,28 @@
+{
+    "name": "edsongr/eso-io",
+    "description": "Biblioteca de notificações para PHP",
+    "type": "library",
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Edsongr\\ESOIO\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Edson Oliveira",
+            "email": "edsongrdeveloper@gmail.com"
+        }
+    ],
+    "scripts": {
+        "server-receiver" : "php -S localhost:8080 -t examples/receiver",
+        "server-sender" : "php -S localhost:8080 -t examples/sender",
+        "server-io" : "node server-eso.js"  
+    },
+    "config":{
+        "process-timeout": 0
+    }
+}
