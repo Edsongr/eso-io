@@ -60,10 +60,15 @@ class Notify implements INotify
     {
         $this->notifier->setSong($song);
     }
-
+    
     public function getSong()
     {
         $this->notifier->getSong();
+    }
+
+    public function setPulse(bool $pulse)
+    {
+        $this->notifier->setPulse($pulse);
     }
 
     public function setTypeAlert(string $message)

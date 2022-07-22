@@ -6,7 +6,7 @@ class MySql extends AbstractDb implements IDb
 {
 
     protected $table;
-    protected $sql;
+    protected $sql = [];
 
     public function table(string $table) : IDb
     {
@@ -29,15 +29,14 @@ class MySql extends AbstractDb implements IDb
             $collumns = '`' . $collumns . '`';
         }
 
-        $this->sql = sprintf('SELECT %s FROM %s', $collumns, $this->table);
+        $this->sql['select'][] = sprintf(' %s ', $collumns);
         return $this;
     }
 
     public function join(string $table,string $param1, string $param2) : IDb 
     {
-        // Trabalhar melhor essa parte e da do Left
         if ($table)
-            $this->sql .= sprintf(' INNER JOIN %s ON %s = %s.%s', $table, $param1, $this->table, $param2);
+            $this->sql['join'][] = sprintf(' INNER JOIN %s ON %s = %s.%s', $table, $param1, $this->table, $param2);
 
         return $this;
     }
@@ -45,24 +44,42 @@ class MySql extends AbstractDb implements IDb
     public function leftJoin(string $table, string $param1, string $param2) : IDb 
     {
         if ($table)
-            $this->sql .= sprintf(' LEFT JOIN %s ON %s = %s', $table, $param1, $param2);
+            $this->sql['left'][] = sprintf(' LEFT JOIN %s ON %s = %s', $table, $param1, $param2);
 
         return $this;
     }
 
     public function where(string $collumn, string $condition, string $value) : IDb 
     {
-        // Trabalhar melhor no where com mais de 1 condição e sendo chamado depois
         if ($collumn)
-            $this->sql .= " WHERE `{$collumn}` {$condition} '{$value}'";
+            $this->sql['where'][] = " `{$collumn}` {$condition} '{$value}'";
 
         return $this;
     }
 
+    // public function whereBetween(string $collumn, string $condition, string $value) : IDb 
+    // {
+    // }
+
     public function get()
     {
-        $sql = $this->pdo->prepare($this->sql);
+        /**
+         * Trata SQL 
+         */
+        $sql = "SELECT " . implode(', ', $this->sql['select']) . " FROM " . $this->table;
+
+        if (isset($this->sql['join']))
+            $sql .= implode(' ', $this->sql['join']);
+
+        if (isset($this->sql['left']))
+            $sql .= implode(' ', $this->sql['left']);
+
+        if (isset($this->sql['where']))
+            $sql .= " WHERE " . implode(' ', $this->sql['where']);
+            
+        $sql = $this->pdo->prepare($sql);
 		$sql->execute();
+
         return $sql->fetchAll(\PDO::FETCH_OBJ);
     }
     

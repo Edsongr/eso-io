@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label for="song" class="col-form-label">Disparar Som?</label>
                         <select name="song" class="form-control">
                             <option value="0">Não</option>
@@ -63,17 +63,25 @@
                         </select>
                     </div>
 
-                    <div class="col-sm-4">
-                        <label for="typeNotify" class="col-form-label">Tipo Notificação</label>
-                        <select name="typeNotify" class="form-control">
-                            <option value="INFO">INFO</option>
-                            <option value="SUCCESS">SUCCESS</option>
-                            <option value="WARNING">WARNING</option>
-                            <option value="DANGER">DANGER</option>
+                    <div class="col-sm-3">
+                        <label for="pulse" class="col-form-label">Pulsar?</label>
+                        <select name="pulse" class="form-control">
+                            <option value="0">Não</option>
+                            <option value="1">Sim</option>
                         </select>
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
+                        <label for="typeNotify" class="col-form-label">Tipo Notificação</label>
+                        <select name="typeNotify" class="form-control">
+                            <option value="INFO-ESO">INFO</option>
+                            <option value="SUCCESS-ESO">SUCCESS</option>
+                            <option value="WARNING-ESO">WARNING</option>
+                            <option value="DANGER-ESO">DANGER</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-3">
                         <label for="receivers" class="col-form-label">Enviar Para</label>
                         <select name="receivers" class="form-control">
                             <option value="ALL">Todos</option>

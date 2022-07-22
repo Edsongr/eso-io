@@ -53,10 +53,16 @@ class InternalNotify extends AbstractNotify implements INotify
         $this->shootSound = $shootSound;
         return $this;
     }
-
+    
     public function getSong() : string
     {
 
+    }
+
+    public function setPulse(bool $pulse) : INotify
+    {
+        $this->pulse = $pulse;
+        return $this;
     }
 
     public function setTypeAlert(string $typeAlert) : INotify

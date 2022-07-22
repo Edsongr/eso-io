@@ -14,6 +14,7 @@ abstract class AbstractNotify
     public $message   = "";
     public $typeAlert = "INFO"; // INFO, SUCCESS, WARNING, DANGER
     public $shootSound= false;
+    public $pulse     = false;
 
     public function getGroupsByUser(int $id)
     {
@@ -38,8 +39,9 @@ abstract class AbstractNotify
             'sender'        => $this->sender,
             'receivers'     => $this->receivers,
             'typeAlert'     => $this->typeAlert,
-            'shootSound'    => $this->shootSound
-        ];
+            'shootSound'    => $this->shootSound,
+            'pulse'         => $this->pulse
+        ]; 
 
         // Deixar Dinamico pelo ENV
         $url    = "http://localhost:3000/";

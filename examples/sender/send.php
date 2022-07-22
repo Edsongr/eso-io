@@ -12,6 +12,7 @@ use Edsongr\ESOIO\Notify\InternalNotify;
 $title      = $_POST['title'] ?? '';
 $message    = $_POST['message'] ?? '';
 $song       = $_POST['song'] ?? false;
+$pulse      = $_POST['pulse'] ?? false;
 $typeNotify = $_POST['typeNotify'] ?? '';
 $receivers  = $_POST['receivers'] ?? '';
 
@@ -20,8 +21,10 @@ $notify->setReceiver($receivers);
 $notify->setTitle($title);
 $notify->setMessage($message);
 $notify->setSong($song);
+$notify->setPulse($pulse);
 $notify->setTypeAlert($typeNotify);
 $result = $notify->sendNotify();
+
 
 $_SESSION['result'] = $result;
 

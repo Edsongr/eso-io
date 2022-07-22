@@ -24,6 +24,8 @@ interface INotify
 
     public function getSong();
 
+    public function setPulse(bool $pulse);
+    
     public function setTypeAlert(string $message);
 
     public function getTypeAlert();
